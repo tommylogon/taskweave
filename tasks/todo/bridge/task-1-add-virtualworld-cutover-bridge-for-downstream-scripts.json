@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "id": "task-1",
+  "kind": "task",
+  "number": 1,
+  "title": "Add VirtualWorld cutover bridge for downstream scripts",
+  "status": "todo",
+  "priority": "high",
+  "area": "bridge",
+  "tags": [
+    "virtualworld",
+    "migration",
+    "bridge"
+  ],
+  "created": "2026-11-13",
+  "updated": "2026-11-13",
+  "horizon": "",
+  "effort": "",
+  "goal": "",
+  "relations": {
+    "blocks": [],
+    "blocked_by": [],
+    "depends_on": [],
+    "related": [
+      "task-6"
+    ],
+    "parent": null,
+    "children": [],
+    "supersedes": [],
+    "superseded_by": [],
+    "invalidates": [],
+    "invalidated_by": []
+  },
+  "sections": {
+    "what": "Provide optional legacy shim or JSON readers for VirtualWorld downstream scripts once dev_tasks migrates.",
+    "why": "",
+    "how": "",
+    "verify": "",
+    "acceptance": [
+      {
+        "text": "routes/bug_reports_ops.py writes JSON tasks via taskweave",
+        "done": false
+      },
+      {
+        "text": "doc_links and changelog read JSON tasks cleanly",
+        "done": false
+      }
+    ],
+    "files": [],
+    "custom": {}
+  },
+  "links": {
+    "wiki": [],
+    "docs": [],
+    "commits": [],
+    "urls": []
+  },
+  "evidence": [],
+  "invalidation": null,
+  "extra": {}
+}

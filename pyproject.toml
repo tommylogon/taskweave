@@ -1,0 +1,38 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "taskweave"
+version = "0.1.0"
+description = "Multi-project JSON-first task graph, invalidation tracker, per-project schema engine, and MCP server with codesearch integration."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [
+    { name = "Tommy Slaatbraaten" }
+]
+keywords = [
+    "tasks",
+    "task-graph",
+    "dag",
+    "mcp",
+    "json-schema",
+    "codesearch",
+    "agentic-ai"
+]
+dependencies = [
+    "fastmcp>=0.1.0",
+    "jsonschema>=4.0.0",
+    "PyYAML>=6.0",
+]
+
+[project.scripts]
+taskweave = "taskweave.cli:main"
+taskweave-mcp = "taskweave.mcp_server:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/taskweave"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

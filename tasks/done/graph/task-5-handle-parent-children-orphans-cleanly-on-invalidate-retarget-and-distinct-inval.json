@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "id": "task-5",
+  "kind": "task",
+  "number": 5,
+  "title": "Handle parent-children orphans cleanly on invalidate --retarget and distinct invalidated mode",
+  "status": "done",
+  "priority": "medium",
+  "area": "graph",
+  "tags": [
+    "graph",
+    "invalidation"
+  ],
+  "created": "2026-11-13",
+  "updated": "2026-11-17",
+  "horizon": "next",
+  "effort": "",
+  "goal": "",
+  "relations": {
+    "blocks": [],
+    "blocked_by": [],
+    "depends_on": [],
+    "related": [],
+    "parent": null,
+    "children": [],
+    "supersedes": [],
+    "superseded_by": [],
+    "invalidates": [],
+    "invalidated_by": []
+  },
+  "sections": {
+    "what": "Preserve or retarget parent/children hierarchy edges cleanly when an epic or parent task is invalidated, and surface distinct invalidated status semantics rather than collapsing into superseded.",
+    "why": "apply_invalidation currently sets status to superseded even in --mode invalidated, and --retarget rewires blocked_by/depends_on while leaving child subtasks pointing at a dead parent.",
+    "how": "Update graph.py apply_invalidation and presets/schema so invalidated can optionally stay distinct or cascade/reparent open children cleanly.",
+    "verify": "Run pytest tests/test_graph_invalidation.py with parent/children retarget cases.",
+    "acceptance": [
+      {
+        "text": "invalidate --retarget warns on or rewires open child subtasks onto the replacement parent",
+        "done": true
+      },
+      {
+        "text": "mode=invalidated semantics are clearly represented and tested",
+        "done": true
+      }
+    ],
+    "files": [
+      "src/taskweave/graph.py",
+      "src/taskweave/schema.py",
+      "src/taskweave/service.py"
+    ],
+    "custom": {}
+  },
+  "links": {
+    "wiki": [],
+    "docs": [],
+    "commits": [],
+    "urls": []
+  },
+  "evidence": [
+    "Updated graph.py apply_invalidation to preserve distinct status='invalidated', emit open-child orphan warnings, and reparent open children onto replacement when retarget_dependents=True.",
+    "Added 'invalidated' to DEFAULT_STATUSES/DEFAULT_TERMINAL_STATUSES in models.py and core/strict/virtualworld preset templates.",
+    "Verified with `pytest tests/test_graph_invalidation.py` (3 passed)."
+  ],
+  "invalidation": null,
+  "extra": {}
+}

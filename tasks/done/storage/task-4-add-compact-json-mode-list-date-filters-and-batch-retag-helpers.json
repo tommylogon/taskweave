@@ -1,0 +1,75 @@
+{
+  "schema_version": 1,
+  "id": "task-4",
+  "kind": "task",
+  "number": 4,
+  "title": "Add compact JSON mode, list date filters, and batch retag helpers",
+  "status": "done",
+  "priority": "medium",
+  "area": "storage",
+  "tags": [
+    "json-schema",
+    "dates",
+    "cli",
+    "tags"
+  ],
+  "created": "2026-11-13",
+  "updated": "2026-11-17",
+  "horizon": "next",
+  "effort": "",
+  "goal": "",
+  "relations": {
+    "blocks": [],
+    "blocked_by": [],
+    "depends_on": [],
+    "related": [],
+    "parent": null,
+    "children": [],
+    "supersedes": [],
+    "superseded_by": [],
+    "invalidates": [],
+    "invalidated_by": []
+  },
+  "sections": {
+    "what": "Support optional storage.compact_json serialization omitting empty lists/strings, add --created-after/--updated-after filters on list, and add batch tag rename/alias migration.",
+    "why": "Explicit empty fields aid uniform readability while compact mode cuts token footprint on large repos, and date/tag batch tools help curate backlogs cleanly.",
+    "how": "Read storage.compact_json in models.py and schema.py, add date bounds in service.list_tasks and cli.py, and add a retag service/CLI command.",
+    "verify": "Run unit tests covering compact round-trip, date filtering, and batch tag normalization.",
+    "acceptance": [
+      {
+        "text": "compact_json omits empty optional values while reloading cleanly into full TaskRecord",
+        "done": true
+      },
+      {
+        "text": "list supports --created-after and --updated-after",
+        "done": true
+      },
+      {
+        "text": "retag updates matching tags across JSON tasks cleanly",
+        "done": true
+      }
+    ],
+    "files": [
+      "src/taskweave/models.py",
+      "src/taskweave/config.py",
+      "src/taskweave/schema.py",
+      "src/taskweave/service.py",
+      "src/taskweave/cli.py"
+    ],
+    "custom": {}
+  },
+  "links": {
+    "wiki": [],
+    "docs": [],
+    "commits": [],
+    "urls": []
+  },
+  "evidence": [
+    "Added storage.compact_json support in ProjectContext, TaskRecord.to_json_dict(compact=...), and store.py write_new_task/save_task.",
+    "Added created_after/updated_after date filters to service.list_tasks, cli.py (--created-after/--updated-after), and mcp_server.py.",
+    "Added service.retag_tasks and `taskweave retag` CLI command for batch tag renaming and alias normalization.",
+    "Verified with `pytest tests/test_store_and_json.py` (3 passed)."
+  ],
+  "invalidation": null,
+  "extra": {}
+}

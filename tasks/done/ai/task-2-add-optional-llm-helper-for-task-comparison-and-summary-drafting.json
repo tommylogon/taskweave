@@ -1,0 +1,63 @@
+{
+  "schema_version": 1,
+  "id": "task-2",
+  "kind": "task",
+  "number": 2,
+  "title": "Add optional LLM helper for task comparison and summary drafting",
+  "status": "done",
+  "priority": "medium",
+  "area": "ai",
+  "tags": [
+    "llm",
+    "similarity",
+    "backfill"
+  ],
+  "created": "2026-11-13",
+  "updated": "2026-11-17",
+  "horizon": "",
+  "effort": "",
+  "goal": "",
+  "relations": {
+    "blocks": [],
+    "blocked_by": [],
+    "depends_on": [],
+    "related": [],
+    "parent": null,
+    "children": [],
+    "supersedes": [],
+    "superseded_by": [],
+    "invalidates": [],
+    "invalidated_by": []
+  },
+  "sections": {
+    "what": "Allow local/API LLM assistance for nuanced duplicate explanation and legacy card cleanup.",
+    "why": "",
+    "how": "",
+    "verify": "",
+    "acceptance": [
+      {
+        "text": "Works cleanly offline when no LLM server is configured",
+        "done": true
+      },
+      {
+        "text": "Explains merge or supersede rationale cleanly",
+        "done": true
+      }
+    ],
+    "files": [],
+    "custom": {}
+  },
+  "links": {
+    "wiki": [],
+    "docs": [],
+    "commits": [],
+    "urls": []
+  },
+  "evidence": [
+    "Added src/taskweave/llm.py with OpenAI-compatible explain_task_comparison and draft_task_summary that degrade cleanly offline.",
+    "Wired explain=True / --explain into service.find_similar_tasks, service.draft_summary, and cli.py `similar --explain`.",
+    "Verified full suite with `pytest` (21 passed)."
+  ],
+  "invalidation": null,
+  "extra": {}
+}

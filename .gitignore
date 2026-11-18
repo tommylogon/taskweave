@@ -1,0 +1,23 @@
+# Byte-compiled / Python packaging
+__pycache__/
+*.py[cod]
+*$py.class
+dist/
+build/
+*.egg-info/
+.eggs/
+.pytest_cache/
+
+# Taskweave transient caches & temp markdown previews
+.taskweave/
+.codesearch/
+tasks/.previews/
+tasks/.taskweave-index.json
+.tasks-index.json
+
+# Environments & logs
+.env
+.venv/
+venv/
+*.log
+*.err

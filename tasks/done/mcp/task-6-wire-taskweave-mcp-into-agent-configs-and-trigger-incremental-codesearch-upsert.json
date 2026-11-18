@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "id": "task-6",
+  "kind": "task",
+  "number": 6,
+  "title": "Wire taskweave-mcp into agent configs and trigger incremental codesearch upsert on save",
+  "status": "done",
+  "priority": "high",
+  "area": "mcp",
+  "tags": [
+    "mcp",
+    "codesearch",
+    "automation"
+  ],
+  "created": "2026-11-13",
+  "updated": "2026-11-17",
+  "horizon": "now",
+  "effort": "",
+  "goal": "",
+  "relations": {
+    "blocks": [],
+    "blocked_by": [],
+    "depends_on": [],
+    "related": [
+      "task-1"
+    ],
+    "parent": null,
+    "children": [],
+    "supersedes": [],
+    "superseded_by": [],
+    "invalidates": [],
+    "invalidated_by": []
+  },
+  "sections": {
+    "what": "Register taskweave-mcp cleanly in workspace agent configs (.kilo, .opencode, Antigravity) and optionally trigger single-file codesearch index updates when JSON tasks are created, edited, or moved.",
+    "why": "Right now agent MCP configs still lack taskweave-mcp, and new or edited tasks rely on lexical matching until a manual codesearch re-index runs.",
+    "how": "Provide config snippets or CLI setup helper for MCP registration, and add an optional codesearch single-file refresh hook in store/service after JSON writes.",
+    "verify": "Verify MCP server starts over stdio from agent config and new JSON tasks become immediately searchable in codesearch.db.",
+    "acceptance": [
+      {
+        "text": "Agent MCP configs invoke taskweave-mcp over stdio cleanly",
+        "done": true
+      },
+      {
+        "text": "Creating or updating a JSON task refreshes an existing .codesearch index automatically without slow full re-scans",
+        "done": true
+      }
+    ],
+    "files": [
+      "src/taskweave/mcp_server.py",
+      "src/taskweave/service.py",
+      "src/taskweave/cli.py"
+    ],
+    "custom": {}
+  },
+  "links": {
+    "wiki": [],
+    "docs": [],
+    "commits": [],
+    "urls": []
+  },
+  "evidence": [
+    "Registered taskweave MCP server in .kilo/kilo.jsonc and .opencode/opencode.jsonc (Antigravity mcp_config.json already configured).",
+    "Added `taskweave mcp-config` CLI snippet generator and `upsert_task_in_codesearch` hook in store.py write_new_task/save_task.",
+    "Verified with `pytest tests/test_similarity_codesearch.py` (4 passed)."
+  ],
+  "invalidation": null,
+  "extra": {}
+}

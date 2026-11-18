@@ -1,0 +1,67 @@
+{
+  "schema_version": 1,
+  "id": "task-3",
+  "kind": "task",
+  "number": 3,
+  "title": "Complete interactive REPL parity and status transition history log",
+  "status": "done",
+  "priority": "medium",
+  "area": "cli",
+  "tags": [
+    "cli",
+    "interactive",
+    "audit"
+  ],
+  "created": "2026-11-13",
+  "updated": "2026-11-17",
+  "horizon": "next",
+  "effort": "",
+  "goal": "",
+  "relations": {
+    "blocks": [],
+    "blocked_by": [],
+    "depends_on": [],
+    "related": [],
+    "parent": null,
+    "children": [],
+    "supersedes": [],
+    "superseded_by": [],
+    "invalidates": [],
+    "invalidated_by": []
+  },
+  "sections": {
+    "what": "Add project switching, set/check-all, link/unlink, preview, tags, and roadmap commands to interactive mode, plus append lightweight status transition entries on task updates.",
+    "why": "interactive.py currently exposes only basic list/next/show/add/move/invalidate commands, and status moves only overwrite the updated date instead of leaving an audit trail.",
+    "how": "Extend interactive.py command loop via service helpers and optionally record compact status history entries in TaskRecord.",
+    "verify": "Run pytest tests/test_cli_and_mcp.py and exercise interactive commands.",
+    "acceptance": [
+      {
+        "text": "Interactive loop supports project, set, link, unlink, preview, tags, and roadmap",
+        "done": true
+      },
+      {
+        "text": "Status moves append timestamped transition history when enabled",
+        "done": true
+      }
+    ],
+    "files": [
+      "src/taskweave/interactive.py",
+      "src/taskweave/models.py",
+      "src/taskweave/service.py"
+    ],
+    "custom": {}
+  },
+  "links": {
+    "wiki": [],
+    "docs": [],
+    "commits": [],
+    "urls": []
+  },
+  "evidence": [
+    "Extended interactive.py REPL with project, set, check-all, link, unlink, preview, tags, roadmap, and help commands (with Windows-safe shlex splitting).",
+    "Added TaskRecord.history field in models.py, schema.py, and timestamped status transition logging in service.move_task.",
+    "Verified with `pytest tests/test_cli_and_mcp.py` (3 passed)."
+  ],
+  "invalidation": null,
+  "extra": {}
+}
